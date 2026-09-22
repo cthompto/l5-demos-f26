@@ -2,6 +2,7 @@
 A repository for my L5 demos as part of my Fall 2026 Creative Coding course.
 
 ![L5 Logo Animated](assets/l5-logo-demo.gif)
+*Gif capture of a logo demo. Code available in demos folder.*
 
 ## Introduction
 The examples housed here are saved as .lua files. To run the code you need to download and install the necessary L5 resources which can be found here:
