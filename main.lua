@@ -81,8 +81,8 @@ function draw()
 
   -- Draw sign poll
   stroke(0)
-  strokeWeight(3)
-  line(30,470, 30, 400)
+  strokeWeight(1)
+  line(30,470,30,400)
 
   -- Draw sign
   fill(255)
