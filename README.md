@@ -1,4 +1,4 @@
-# l5-demos-f26
+# L5 Demos - Fall 2026
 A repository for my L5 demos as part of my Fall 2026 Creative Coding course.
 
 ## Introduction
