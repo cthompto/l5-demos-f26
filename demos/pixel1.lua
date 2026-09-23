@@ -1,6 +1,8 @@
 -- Image Pixel Demo 1
 -- Chelsea Thompto
 
+-- IN PROGRESS
+
 require("L5")
 
 myPixels = {}
