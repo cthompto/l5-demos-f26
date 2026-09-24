@@ -6,6 +6,8 @@ require("L5")
 function setup()
   size(400, 400)
   
+  windowTitle("Cursor Cords Demo")
+  
 end
 
 function draw()
