@@ -1,7 +1,7 @@
 -- Image Pixel Demo 1
 -- Chelsea Thompto
 
--- IN PROGRESS
+-- display grid of pixels from an image
 
 require("L5")
 

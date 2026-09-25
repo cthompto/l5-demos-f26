@@ -1,7 +1,7 @@
--- Image Pixel Demo 3
+-- Image Pixel Demo 2
 -- Chelsea Thompto
 
--- invisible spots rotating pixels
+-- spotlight to pixelate or depixelate
 
 require("L5")
 
@@ -31,8 +31,7 @@ function setup()
     newPixel = {
       color = g,
       x = x,
-      y = y,
-      r = 0
+      y = y
     }
     table.insert(myPixels, newPixel)
     y = y + pixelSize;
@@ -43,36 +42,25 @@ function setup()
   end
 
   spotX = 200
-  spotY = 200
+  spotY = 300
   moveX = random(-2,2)
   moveY = random(-2,2)
-
-  spot2X = 200
-  spot2Y = 400
-  move2X = random(-2,2)
-  move2Y = random(-2,2)
 
 end
 
 function draw()
   background(0)
-  --image(img, 0, 0, width, height)
+  image(img, 0, 0, width, height)
 
   for i=1, #myPixels do
-    if (spotX - myPixels[i].x)*(spotX - myPixels[i].x) + (spotY - myPixels[i].y)*(spotY - myPixels[i].y) <= 180*180 then
-      myPixels[i].r = myPixels[i].r + 1
+    if (spotX - myPixels[i].x)*(spotX - myPixels[i].x) + (spotY - myPixels[i].y)*(spotY - myPixels[i].y) >= 80*80 then
+      fill(myPixels[i].color)
+      rect(myPixels[i].x, myPixels[i].y, pixelSize, pixelSize)
+    elseif (spotX - myPixels[i].x)*(spotX - myPixels[i].x) + (spotY - myPixels[i].y)*(spotY - myPixels[i].y) >= 70*70 then
+      fill(myPixels[i].color[1],myPixels[i].color[2],myPixels[i].color[3],myPixels[i].color[4]-100)
+      rect(myPixels[i].x, myPixels[i].y, pixelSize, pixelSize)
     end
-    if (spot2X - myPixels[i].x)*(spot2X - myPixels[i].x) + (spot2Y - myPixels[i].y)*(spot2Y - myPixels[i].y) <= 180*180 then
-      myPixels[i].r = myPixels[i].r - 1
-    end
-    push()
-    translate(myPixels[i].x, myPixels[i].y)
-    rotate(myPixels[i].r)
-    fill(myPixels[i].color)
-    rect(0,0, pixelSize, pixelSize)
-    pop()
   end
-
 
   spotX = spotX + moveX
   spotY = spotY + moveY
@@ -89,19 +77,13 @@ function draw()
     moveY = random(-1,-2)
   end
 
-  spot2X = spot2X + move2X
-  spot2Y = spot2Y + move2Y
-
-  if spot2X <=0 then
-    move2X = random(1,2)
-  elseif spot2X >= width then
-    move2X = random(-1,-2)
-  end
-
-  if spot2Y <=0 then
-    move2Y = random(1,2)
-  elseif spot2Y >= height then
-    move2Y = random(-1,-2)
-  end
-
 end
+
+
+-- Things below here are notes, tests, and example code
+
+--[[
+
+
+
+]]--
