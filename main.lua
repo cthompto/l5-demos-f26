@@ -5,10 +5,9 @@
 
 require("L5")
 
-myPixels = {}
 
 function setup()
-  size(1000, 1000)
+  size(600, 600)
   angleMode(DEGREES)
   windowTitle("Image Pixel Test")
 
@@ -20,16 +19,12 @@ end
 function draw()
   background(0)
   noStroke()
-  fill(0,200,100)
-  rect(width/2,0,width/2,height/2)
+  fill(220,50,50)
+  rect(width/2,height/2,width*0.5,height*0.50)
 
-  -- user defined variables
-  circleX = 100
-  circleY = 200
-
-  fill(0,100,200)
-  ellipse(mouseX,mouseY,circleX,circleY)
-
+  fill(120,120,120)
+  ellipse(mouseX,mouseY,width*0.2,height*0.1)
+  ellipse(mouseX,mouseY-20,width*0.15,height*0.15)
   fill(255)
-  ellipse(mouseX,mouseY,circleX/2,circleY/2)
+  ellipse(mouseX,mouseY-35,width*0.05,height*0.05)
 end
