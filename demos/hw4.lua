@@ -16,7 +16,7 @@ function setup()
   describe('Draws a tree')
 end
 
--- draw loop, runs 30 times per second by default
+-- draw loop, runs 60 times per second by default
 function draw()
   -- Code below renders the tree in shapes
 

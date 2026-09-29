@@ -28,7 +28,7 @@ end
 
 -- draw loop for rendering and updating elements on the canvas
 function draw()
-  -- run new background generation every 1 second
+  -- run new background generation every 1/2 second
   if frameCount%30 == 0 then
     spotFill()
   end

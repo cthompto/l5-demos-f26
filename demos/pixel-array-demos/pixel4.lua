@@ -1,4 +1,4 @@
--- Image Pixel Demo 5
+-- Image Pixel Demo 4
 -- Chelsea Thompto
 
 -- invisible spots rotating pixels
@@ -62,12 +62,7 @@ function draw()
   background(0,0,0,5)
   --image(img, 0, 0, width, height)
 
-  pixelProcess()
-  spotMove()
-
-end
-
-function pixelProcess()
+  -- deciding on using scale vs changing pixel size...
   for i=1, #myPixels do
     if (spotX - myPixels[i].x)*(spotX - myPixels[i].x) + (spotY - myPixels[i].y)*(spotY - myPixels[i].y) <= 180*180 then
       myPixels[i].r = myPixels[i].r + 1
@@ -86,10 +81,9 @@ function pixelProcess()
     rect(0,0, myPixels[i].s, myPixels[i].s)
     pop()
   end
-end
 
-function spotMove()
-spotX = spotX + moveX
+
+  spotX = spotX + moveX
   spotY = spotY + moveY
 
   if spotX <=0 then
@@ -118,4 +112,5 @@ spotX = spotX + moveX
   elseif spot2Y >= height then
     move2Y = random(-1,-2)
   end
+
 end
