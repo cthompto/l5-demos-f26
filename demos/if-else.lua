@@ -14,9 +14,9 @@ function draw()
   background(240, 100, 30)
 
   -- if, elseif, and else used to determine fill color
-  if mouseY < width*0.33 then
+  if mouseY < height*0.33 then
     fill(0)
-  elseif mouseY < width*0.66 then
+  elseif mouseY < height*0.66 then
     fill(125)
   else
     fill(255)

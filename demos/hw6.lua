@@ -1,12 +1,15 @@
 -- hw 6 demo
 -- Chelsea Thompto
 
+-- for oval rotation
 ovalRotation1 = 0
 ovalRotation2 = 0
 
+-- for dot size
 dotSize = 1
 dotChange = 0.5
 
+-- for background bars
 rectY = -100
 rectY2 = 500
 
