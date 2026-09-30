@@ -1,7 +1,6 @@
 -- Scale Example
 -- Chelsea Thompto
 
-
 --[[ 
 Explanation:
 The scale() function will shrink or expand a shape. It does
@@ -25,7 +24,6 @@ The sketch below illlustrates this whole process. The grey triangle
 is the orginal triangle before scaling. The white triangle is the 
 triangle after scaling without moving the origin point, and the 
 purple triangle is the scaled triangle with the origin moved.
-
 ]]--
 
 require("L5")
@@ -45,34 +43,35 @@ end
 function draw()
   background(0)
 
-  --initial triangle to be resized (grey)
+  --initial triangle to be resized 
+  --(grey triangle)
   fill(125)
   triangle(200,100,300,300,100,300)
 
   --scaling without translating the origin
   push()
   scale(0.5)
-  --scale is applied then triangle is draw as normal
+  --scale is applied then triangle is drawn 
   --(white triangle)
   fill(255)
   triangle(200,100,300,300,100,300)
-  --original orgin in red (top left)
+  --original orgin in (red) (top left)
   fill(255,0,0)
   circle(0,0,20)
   pop()
 
   --scaling with translating the orgin
   push()
-  --orgin set to center of the canvas, this will 
-  --cause the triangle to shrink aroud the center
+  --orgin set to center of the canvas, this will cause the 
+  --triangle to shrink aroud the center
   translate(width/2,height/2)
   scale(0.5)
-  --scale is applied and then the triangle is rewritten
-  --so the points treat the center of the canvas as the
-  --0,0 point
+  --scale is applied and then the triangle is rewritten so the 
+  --points treat the center of the canvas as the 0,0 point 
+  --(purple triangle)
   fill(200,50,200)
   triangle(0,-100,100,100,-100,100)
-  --new origin point in green
+  --new origin point (green)
   fill(0,255,0)
   circle(0,0,20)
   pop()
