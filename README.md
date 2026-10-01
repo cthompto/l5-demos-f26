@@ -27,4 +27,4 @@ end()
 In the above, "function to set up the canvas" is a comment.
 
 ## Running Examples
-The easiest way to run examples is to copy the example code and paste it into your own <code>main.lua</code> file. Remember that you must have the required L5 resources in order to run the examples.
+The easiest way to run examples is to copy the example code and paste it into your own <code>main.lua</code> file. Remember that you must have the required L5 resources in order to run the examples. You also need any images or other media associated with the example.
