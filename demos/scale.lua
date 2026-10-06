@@ -1,6 +1,7 @@
 -- Scale Example
 -- Chelsea Thompto
 
+
 --[[ 
 Explanation:
 The scale() function will shrink or expand a shape. It does
@@ -20,10 +21,11 @@ the center of the canvas. So, I had to use translate function
 and then recalculate where the triangle points would be with the
 center as the 0,0 point. 
 
-The sketch below illlustrates this whole process. The grey triangle
-is the orginal triangle before scaling. The white triangle is the 
+The sketch below illustrates this whole process. The grey triangle
+is the original triangle before scaling. The white triangle is the 
 triangle after scaling without moving the origin point, and the 
 purple triangle is the scaled triangle with the origin moved.
+
 ]]--
 
 require("L5")
@@ -43,35 +45,34 @@ end
 function draw()
   background(0)
 
-  --initial triangle to be resized 
-  --(grey triangle)
+  --initial triangle to be resized (grey)
   fill(125)
   triangle(200,100,300,300,100,300)
 
   --scaling without translating the origin
   push()
   scale(0.5)
-  --scale is applied then triangle is drawn 
+  --scale is applied then triangle is draw as normal
   --(white triangle)
   fill(255)
   triangle(200,100,300,300,100,300)
-  --original orgin in (red) (top left)
+  --original origin in red (top left)
   fill(255,0,0)
   circle(0,0,20)
   pop()
 
-  --scaling with translating the orgin
+  --scaling with translating the origin
   push()
-  --orgin set to center of the canvas, this will cause the 
-  --triangle to shrink aroud the center
+  --orgin set to center of the canvas, this will 
+  --cause the triangle to shrink around the center
   translate(width/2,height/2)
   scale(0.5)
-  --scale is applied and then the triangle is rewritten so the 
-  --points treat the center of the canvas as the 0,0 point 
-  --(purple triangle)
+  --scale is applied and then the triangle is rewritten
+  --so the points treat the center of the canvas as the
+  --0,0 point
   fill(200,50,200)
   triangle(0,-100,100,100,-100,100)
-  --new origin point (green)
+  --new origin point in green
   fill(0,255,0)
   circle(0,0,20)
   pop()
