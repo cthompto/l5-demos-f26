@@ -1,53 +1,39 @@
--- Conditional Drawing + Randomization
+-- Random Example 2
 -- Chelsea Thompto
 
--- Draw a word and shape based on an item in an array
+-- Pick a random element from an array/table
 
--- define our array
-myItems = {
-  "Box",
-  "Circle",
-  "Line"
-}
+-- an array of string(text) values
+pizzaToppings = {"onions","tomatoes","garlic","pineapple"}
 
 require("L5")
 
 function setup()
-  size(400, 400)
-  windowTitle("Basic Animation Demo")
-  noStroke()
-  frameRate(60)
-  rectMode(CENTER)
-  angleMode(DEGREES)
-  textAlign(CENTER)
-  textSize(25)
-  -- choose an item from the array
-  myChoice = random(myItems)
+    size(600, 400)
+    angleMode(DEGREES)
+    frameRate(60)
+    windowTitle("Random Example 2")
+
+    describe('Black background with white text.')
+
+    background(0)
+    textAlign(CENTER)
+    -- using random and the array name to get a random element from the array
+    generateSentence(30)
+    myfontSize = 0
 end
 
 function draw()
-  background(0)
-  fill(255)
-  -- display the array item name chose
-  text("Draw a "..myChoice, width/2, height*0.3)
-
-  -- draw based on the array item chosen
-  if myChoice == "Box" then
-    noStroke()
-    fill(200,10,200)
-    rect(width/2,height*0.6, 100,100)
-  elseif myChoice == "Circle" then
-    noStroke()
-    fill(10,200,200)
-    ellipse(width/2,height*0.6, 100,100)
-  elseif myChoice == "Line" then
-    stroke(200,200,10)
-    strokeWeight(10)
-    line(width*0.25, height*0.6, width*0.75, height*0.6)
+  -- pick a new random element and draw it every 2 seconds (60 frames per second times 2)
+  if frameCount%60 == 0 then
+    background(0)
+    myfontSize = myfontSize + 1
+    generateSentence(myfontSize)
   end
+end
 
-  -- every 2 seconds pick a new item
-  if frameCount%120 == 0 then
-    myChoice = random(myItems)
-  end
+-- function to draw a new sentence with a new pizza topping
+function generateSentence(thisSize)
+  textSize(thisSize)
+  text('I want a pizza with '..random(pizzaToppings).." please.", width/2, height/2)
 end

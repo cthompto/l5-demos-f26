@@ -23,7 +23,6 @@ function setup()
     textSize(30)
     -- using random and the array name to get a random element from the array
     sentenceBuilder(30)
-    textGenerator()
 end
 
 function draw()
