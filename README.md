@@ -9,6 +9,8 @@ The examples housed here are saved as <code>.lua</code> files. To run the code y
 
 <https://github.com/L5lua/L5>
 
+The demos found here are based off the content found on the L5 reference and tutorial pages and based on prior examples I made in p5.js which I have converted to L5. 
+
 ## Navigating This Repository
 The root of this repository (root meaning the first or top-most directory in a file system) contains an <code>L5.lua</code> and a <code>main.lua</code> file. These are required for running examples. Throughout the semester, the <code>main.lua</code> file in the root folder will change as I am using this repository as an active workspace for developing class resources. 
 
