@@ -1,4 +1,4 @@
--- Homework 4 Demo
+-- Basic Shape Demo
 -- Chelsea Thompto
 
 require("L5")
@@ -10,7 +10,7 @@ function setup()
   angleMode(DEGREES)
 
   -- Set the program title
-  windowTitle("Homework 4 Demo")
+  windowTitle("Basic Shape Demo")
 
   -- Describe the visual output
   describe('Draws a tree')
