@@ -1,4 +1,4 @@
--- hw 6 demo
+-- Basic Animation Demo 2
 -- Chelsea Thompto
 
 -- for oval rotation
