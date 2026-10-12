@@ -1,72 +1,74 @@
--- Rotation Demo
+-- Random + Nested Arrays + Timing
 -- Chelsea Thompto
 
--- How to rotate shapes around their position.
-
--- By default, the rotate() function will rotate things
--- around the top left corner of the screen. In order to 
--- change that, we need to use translate() which allows
--- us to move the origin point. If I move the origin
--- point to 100,100, then I can draw a shape at 0,0 and
--- it will be on the screen at the 100,100 location.
-
-
--- These variables are for the animation.
-redRotation = 0
-greenRotation = 0
+-- create an array/table of colors
+myColors = {
+  {r = 104,g = 42,b = 25},
+  {r = 244,g = 242,b = 5},
+  {r = 4,g = 142,b = 125},
+  {r = 210,g = 210,b = 225}
+}
 
 require("L5")
 
 function setup()
-  size(400, 400)
-  angleMode(DEGREES)
-  -- This command treats rectangles like ellipses and
-  -- measures from the center point.
-  rectMode(CENTER)
-  noStroke()
-  windowTitle("For Loop 1")
-  describe('White screen with green and blue circles')
-  background(255)
-  textSize(20)
-  textAlign(CENTER)
+    size(600, 600)
+    angleMode(DEGREES)
+    rectMode(CENTER)
+    textAlign(CENTER)
+    frameRate(60)
+    windowTitle("Random + Nested Arrays + Timing")
+    describe('Black background with rotating circles')
+    background(0)
+    noStroke()
+
+    -- initial rotation number
+    rotNum = 0
+
+    --[[
+    Pick a random number between 0 and the number of elements in
+    the array. This is done with random(#myColors). The "#" reads
+    as "the length of the table" to the computer. Then, use the
+    ceil() call which rounds up to the nearest whole number. In
+    this case, this will result in a result of "1","2","3", or "4".
+    ]]--
+    currentColor = ceil(random(#myColors))
+    currentColor2 = ceil(random(#myColors))
 end
 
 function draw()
-  background(255)
-
-  -- Draw a black dot at the origin (0,0) point
-  fill(0)
-  ellipse(0,0,30,30)
-
-  -- push() and pop() allow use to isolate a section
-  -- of code. Here it will make sure only the red 
-  -- square is rotated
-
-  push()
-  -- Rotate and draw a red square
-  fill(255,25,0)
-  rotate(redRotation)
-  rect(100,100,100,100)
-  pop()
-
-  -- push() and pop() are used again here to have 
-  -- the translate and rotation happen to only the 
-  -- green and blue shapes.
+  background(0)
   
-  push()
-  -- Move the origin point to (200,200)
-  translate(200,200)
-  rotate(greenRotation)
-  -- draw the green square
-  fill(10,255,10)
-  rect(0,0,100,100)
-  -- draw the blue dot
-  fill(0,20,250)
-  ellipse(0,0,30,30)
-  pop()
+  -- create 6 sets of 2 concentric circles
+  for i = 1, 6, 1 do
+    push()
+    -- center the rotation to the canvas center
+    translate(width/2,height/2)
+    -- increase the rotation by 60 degrees every i, animate with rotNum
+    rotate(i*60+rotNum)
+    -- Draw the larger circle with a random number linked to a color set.
+    -- This uses the random number generated for "currentColor2" and then refers to 
+    -- the "r", "g", and "b" values within that.
+    fill(myColors[currentColor2].r,myColors[currentColor2].g,myColors[currentColor2].b)
+    -- offset y so circles orbit middle point
+    ellipse(0,200,75,75)
+    -- draw the smaller circle with a different random number (might be duplicated)
+    fill(myColors[currentColor].r,myColors[currentColor].g,myColors[currentColor].b)
+    ellipse(0,200,50,50)
+    pop()
+  end
 
-  -- increase the rotation numbers to animate scene
-  redRotation = redRotation + 1
-  greenRotation = greenRotation + 1
+  -- Pull the same values into a text call to display fill colors
+  fill(255)
+  text("Outer Circle Color: R:"..myColors[currentColor2].r.." G:"..myColors[currentColor2].g.." B:"..myColors[currentColor2].b, width/2, height*0.45)
+  text("Inner Circle Color: R:"..myColors[currentColor].r.." G:"..myColors[currentColor].g.." B:"..myColors[currentColor].b, width/2, height*0.55)
+
+  -- every loop, increase the rotation of call circles by 1 degree
+  rotNum = rotNum + 1
+
+  -- every 2 seconds, pick a new set of numbers for both circles
+  if frameCount%120 == 0 then
+    currentColor = ceil(random(#myColors))
+    currentColor2 = ceil(random(#myColors))
+  end
 end
-
