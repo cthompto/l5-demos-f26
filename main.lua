@@ -1,106 +1,121 @@
--- Super Parking Lot Simulator 4000
+-- Riso Demo 1
 -- Chelsea Thompto
 
--- mini truck position
-carX = 200
-carY = 200
-
--- mini truck colors
-carR = {255,255,0,2,242,252}
-carG = {255,60,128,23,0,234}
-carB = {255,25,38,214,210,25}
-colorIndex = 1
-
--- off screen value
-offScreen = false
+blueOffX = 0
+pinkOffY = 0
+yellowRot = 0
 
 require("L5")
 
 function setup()
-  size(400, 400)
-  windowTitle("Super Parking Lot Simulator 4000")
-  describe('A parking lot with a car.')
-  rectMode(CENTER)
+  size(600, 400)
+  windowTitle("Riso Demo 1")
+  describe('Color Chart')
   angleMode(DEGREES)
+  
+  textSize(18)
   noStroke()
-  background(255)
-  textAlign(CENTER)
-  textSize(30)
 end
 
 function draw()
-  -- background color and parking lot lines
-  background(85)
-  fill(255)
-  for i = 1, 18, 1 do
-    if i < 10 then
-      rect(25,i*40, 50, 5)
-    else
-      rect(375,760-(i*40), 50, 5)
-    end
+  -- draw background
+  background(255)
+
+  drawFramingGraphics()
+
+
+  blueDraw()
+  pinkDraw()
+  yellowDraw()
+
+  keyboardControls()
+end
+
+function drawFramingGraphics()
+  textAlign(LEFT)
+  noFill()
+  stroke(0)
+  rect(275,100,250,250)
+  fill(0)
+  textSize(24)
+  text('Moving Riso Color Chart', 10, 30)
+  textSize(18)
+  text('Controls:', 10, 70)
+  textSize(12)
+  text('"A" and "d" keys:', 10, 100)
+  text('- Rotates yellow', 20, 120)
+  text('Mouse Move:', 10, 150)
+  text('- Moves yellow', 20, 170)
+  text('"Left" and "right" keys:', 10, 200)
+  text('- Moves blue.', 20, 220)
+  text('"Up" and "down" keys:', 10, 250)
+  text('- Moves pink.', 20, 270)
+end
+
+function blueDraw()
+  textAlign(CENTER)
+  textSize(18)
+  noStroke()
+  for i = 1, 10, 1 do
+    fill(0, 120, 191,i*25)
+    rect(275+blueOffX, 75+i*25, 250, 25)
   end
+  for i = 1, 10, 1 do
+    fill(0, 120, 191)
+    text((i*10).."%", 245+blueOffX, 95+i*25)
+  end 
+end
 
-  -- draw mini truck
-  drawKeiTruck()
+function pinkDraw()
+  textAlign(CENTER)
+  textSize(18)
+  noStroke()
+  for i = 1, 10, 1 do
+    fill(255, 72, 176,i*25)
+    rect(250+i*25, 100+pinkOffY, 25, 250)
+  end
+  for i = 1, 10, 1 do
+    fill(255, 72, 176)
+    push()
+    translate(255+i*25, 70+pinkOffY)
+    rotate(90)
+    text((i*10).."%", 0,0 )
+    pop()
+  end 
+end
 
-  -- move mini truck
+function yellowDraw()
+  textAlign(CENTER)
+  textSize(18)
+  noStroke()
+  push()
+  translate(mouseX,mouseY)
+  rotate(yellowRot)
+  for i = 1, 10, 1 do
+    fill(255, 232, 0,255-(i*25))
+    rect(-125, -150+i*25, 250, 25)
+  end
+  for i = 1, 10, 1 do
+    fill(255, 232, 0)
+    text((i*10).."%", 155, 145-i*25)
+  end 
+  pop()
+end
+
+function keyboardControls()
   if keyIsPressed then
     if key == "left" then
-      carX = carX - 1
-      if carX < 25 then
-        carX = 25
-      end
+      blueOffX = blueOffX - 1
     elseif key == "right" then
-      carX = carX + 1
-      if carX > 375 then
-        carX = 375
-      end
-    elseif key == "up" then
-      carY = carY - 1
+      blueOffX = blueOffX + 1
     elseif key == "down" then
-      carY = carY + 1
+      pinkOffY = pinkOffY + 1
+    elseif key == "up" then
+      pinkOffY = pinkOffY - 1
+    elseif key == "a" then
+      yellowRot = yellowRot - 1
+    elseif key == "d" then
+      yellowRot = yellowRot + 1
     end
   end
-
-  -- check if mini truck is off screen
-  if carY <= -20 or carY >= height+20 then
-    offScreen = true
-  else
-    offScreen = false
-  end
-
-  -- if off screen, add message
-  if offScreen then
-    fill(255)
-    text("Goodbye!!!", width/2,height/2)
-  end
-
-end
-   
--- change truck color on mouse press
-function mousePressed()
-  colorIndex = colorIndex + 1
-  if colorIndex > #carR then
-    colorIndex = 1
-  end
-end
-
--- draw truck
-function drawKeiTruck()
-  push()
-  translate(carX,carY)
-  scale(0.5)
-  fill(carR[colorIndex],carG[colorIndex],carB[colorIndex])
-  rect(0, 0, 100, 30)
-  rect(17,-20,34,60)
-  triangle(33,-15,50,-15,33,-50)
-  fill(0)
-  rect(17,-30,24,30)
-  triangle(30,-15,45,-15,30,-47)
-  ellipse(-30,15,25,25)
-  ellipse(30,15,25,25)
-  fill(255)
-  ellipse(-30,15,10,10)
-  ellipse(30,15,10,10)
-  pop()
 end
