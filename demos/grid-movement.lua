@@ -15,8 +15,8 @@ playerColor = '#ffe2c6' -- color to use when drawing the player
 playerCoords = {x = 2, y = 2} -- the current coordinates of the player
 
 function setup()
-    size(600, 500) -- set window size
-    initGrid(6, 5) -- make a grid with a width of 6 tiles and height of 5 tiles 
+    size(1600, 900) -- set window size
+    initGrid(16, 9) -- make a grid with a width of 6 tiles and height of 5 tiles 
     placeWalls() -- place walls around the edge
     noStroke() -- remove stroke
     grid[playerCoords.x][playerCoords.y] = "player" -- set the gridspace of the player's coordinates to be filled by the player
@@ -24,8 +24,8 @@ end
 
 function draw()
     -- draw the base grid
-    for x = 1, gridHeight + 1, 1 do
-        for y = 1, gridWidth + 1, 1 do
+    for x = 1, gridWidth + 1, 1 do
+        for y = 1, gridHeight + 1, 1 do
             if (grid[x][y] == "") then -- if the gridspace is empty, draw the empty gridspace via the function defined below
                 fill(gridColor) -- set the fill color
             elseif (grid[x][y] == "wall") then
