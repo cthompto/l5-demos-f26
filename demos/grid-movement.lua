@@ -24,8 +24,8 @@ end
 
 function draw()
     -- draw the base grid
-    for x = 1, gridWidth + 1, 1 do
-        for y = 1, gridHeight + 1, 1 do
+    for x = 1, gridWidth, 1 do
+        for y = 1, gridHeight, 1 do
             if (grid[x][y] == "") then -- if the gridspace is empty, draw the empty gridspace via the function defined below
                 fill(gridColor) -- set the fill color
             elseif (grid[x][y] == "wall") then
@@ -82,17 +82,17 @@ end
 function initGrid(xNum, yNum)
     setGridSize(xNum, yNum) -- above defined function
     -- nested for loop to create a grid out of an array of arrays
-    for x = 1, gridX, 1 do
+    for x = 1, gridWidth, 1 do
         grid[x] = {}
-        for y = 1, gridY, 1 do
+        for y = 1, gridHeight, 1 do
             grid[x][y] = "" -- set the grid tile to empty
         end
     end
 end
 
 function placeWalls()
-    for x = 1, gridX, 1 do
-        for y = 1, gridY, 1 do
+    for x = 1, gridWidth, 1 do
+        for y = 1, gridHeight, 1 do
             -- set the grid tile to be a wall if it is on one of the edges of the screen
             if (x == 1) or (y == 1) or (x == gridWidth) or (y == gridHeight) then
                 grid[x][y] = "wall" -- set the grid tile to wall
