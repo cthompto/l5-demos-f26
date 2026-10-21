@@ -3,6 +3,7 @@
 
 require("L5")
 
+-- setup program
 function setup()
   size(400, 400)
   windowTitle("If/Else Demo")
@@ -10,6 +11,7 @@ function setup()
   rectMode(CENTER)
 end
 
+-- this runs 60 times per second
 function draw()
   background(240, 100, 30)
 
