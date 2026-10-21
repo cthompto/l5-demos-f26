@@ -18,16 +18,20 @@ risoYellowG = 232
 risoYellowB = 0
 
 --alpha values
-patternAlpha1 = 60
-patternAlpha2 = 120
-patternAlpha3 = 180
-patternAlpha4 = 240
+alpha1 = 30
+alpha2 = 60
+alpha3 = 90
+alpha4 = 120
+alpha5 = 150
+alpha6 = 180
+alpha7 = 210
+alpha8 = 240
 
 --color option array
 colorChoices = {"blue","pink", "yellow"}
 
 --alpha option array
-alphaChoices = {patternAlpha1,patternAlpha2,patternAlpha3,patternAlpha4}
+alphaChoices = {alpha1, alpha2, alpha3, alpha4, alpha5, alpha6, alpha7, alpha8}
 
 require("L5")
 
