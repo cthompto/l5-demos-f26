@@ -1,111 +1,79 @@
--- Random Color and Random Alpha Demo
+-- Random Scaling Three Ways
 -- Chelsea Thompto
--- Choosing a random color and then a random alpha.
+-- Change Scale Every 3 Seconds
 
---riso blue
-risoBlueR = 0
-risoBlueG = 120
-risoBlueB = 191
+-- First option, using the scale() function to change an existing shape
+-- Table below of scales 1 = 100%
+scaleOptions = {0.5,0.75,1,1.25,1.5}
 
---riso pink
-risoPinkR = 255
-risoPinkG = 72
-risoPinkB = 176
+-- Second option, using number directing in the drawing function being used
+sizeOptions = {25,50,75,100,125,150}
 
---riso yellow
-risoYellowR = 255
-risoYellowG = 232
-risoYellowB = 0
-
---alpha values
-alpha1 = 30
-alpha2 = 60
-alpha3 = 90
-alpha4 = 120
-alpha5 = 150
-alpha6 = 180
-alpha7 = 210
-alpha8 = 240
-
---color option array
-colorChoices = {"blue","pink", "yellow"}
-
---alpha option array
-alphaChoices = {alpha1, alpha2, alpha3, alpha4, alpha5, alpha6, alpha7, alpha8}
+-- third option using a random range
+randomSize = 0
 
 require("L5")
 
 function setup()
-  size(400, 400)
-  background(255)
-  noStroke()
+  size(600, 400)
+  windowTitle("Riso Demo 1")
+  describe('Color Chart')
+  background(200, 200, 50)
   rectMode(CENTER)
-  windowTitle("Random Color / Random Alpha")
-  describe('Gird of colorful dots.')
+  frameRate(60)
+  noStroke()
+  textAlign(CENTER)
+  textSize(20)
 
-  --for loop to pick a random color and then a random alpha twice for each position. Nested for,loop creates a grid
-  for i = 1, 9, 1 do
-    for j = 1, 9, 1 do
-      -- pick a random color and alpha and draw a circle
-      currentColor = random(colorChoices)
-      currentAlpha = random(alphaChoices)
-      if currentColor == "blue" then
-        fill(risoBlueR,risoBlueG,risoBlueB,currentAlpha)
-      elseif currentColor == "pink" then
-        fill(risoPinkR,risoPinkG,risoPinkB,currentAlpha)
-      else
-        fill(risoYellowR,risoYellowG, risoYellowB, currentAlpha)
-      end
-      ellipse(0+i*40,0+j*40,40,40)
+  -- choosing initial random values
+  -- variable to hold the selected random scale for option 1
+  currentScale = random(scaleOptions)
 
-      --pick a new random color and draw a square inside of the circle
-      currentColor = random(colorChoices)
-      currentAlpha = random(alphaChoices)
-      if currentColor == "blue" then
-        fill(risoBlueR,risoBlueG,risoBlueB,currentAlpha)
-      elseif currentColor == "pink" then
-        fill(risoPinkR,risoPinkG,risoPinkB,currentAlpha)
-      else
-        fill(risoYellowR,risoYellowG, risoYellowB, currentAlpha)
-      end
-      rect(0+i*40,0+j*40,28,28)
-    end
-  end
+  -- variable to hold the selected random size for option 2
+  currentSize = random(sizeOptions)
+
+  -- variable to hold a randomly selected number for option 3
+  -- making it a whole number so its cleaner to print on screen
+  randomSize = round(random(50,150))
+
 end
 
 function draw()
+  background(200, 200, 50)
 
-end
+  -- left rectangle
+  push()
+  translate(150,200)
+  scale(currentScale)
+  rect(0,0, 100,100)
+  pop()
 
--- repeat process on mouse press
-function mousePressed()
-  background(255)
-  --for loop to pick a random color and then a random alpha twice for each position
-  for i = 1, 9, 1 do
-    for j = 1, 9, 1 do
-      -- pick a random color and alpha and draw a circle
-      currentColor = random(colorChoices)
-      currentAlpha = random(alphaChoices)
-      if currentColor == "blue" then
-        fill(risoBlueR,risoBlueG,risoBlueB,currentAlpha)
-      elseif currentColor == "pink" then
-        fill(risoPinkR,risoPinkG,risoPinkB,currentAlpha)
-      else
-        fill(risoYellowR,risoYellowG, risoYellowB, currentAlpha)
-      end
-      ellipse(0+i*40,0+j*40,40,40)
+  -- middle rectangle
+  rect(300,200,currentSize,currentSize)
 
-      --pick a new random color and draw a square inside of the circle
-      currentColor = random(colorChoices)
-      currentAlpha = random(alphaChoices)
-      if currentColor == "blue" then
-        fill(risoBlueR,risoBlueG,risoBlueB,currentAlpha)
-      elseif currentColor == "pink" then
-        fill(risoPinkR,risoPinkG,risoPinkB,currentAlpha)
-      else
-        fill(risoYellowR,risoYellowG, risoYellowB, currentAlpha)
-      end
-      rect(0+i*40,0+j*40,28,28)
-    end
+  -- right rectangle
+  rect(450,200,randomSize,randomSize)
+
+  -- display text above and current values beneath
+  textSize(21)
+  text("Option 1:", 150, 100)
+  text("Option 2:", 300, 100)
+  text("Option 3:", 450, 100)
+  textSize(14)
+  text("Current Value: "..currentScale, 150, 300)
+  text("Current Value: "..currentSize, 300, 300)
+  text("Current Value: "..randomSize, 450, 300)
+
+  -- choose a new size for each every 3 seconds
+  if frameCount%120 == 0 then
+    -- variable to hold the selected random scale for option 1
+    currentScale = random(scaleOptions)
+
+    -- variable to hold the selected random size for option 2
+    currentSize = random(sizeOptions)
+
+    -- variable to hold a randomly selected number for option 3
+    -- rounding number for cleaner display on screen
+    randomSize = round(random(50,150))
   end
 end
